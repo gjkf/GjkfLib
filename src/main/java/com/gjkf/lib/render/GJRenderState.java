@@ -7,6 +7,7 @@ import com.gjkf.lib.lightning.LC;
 import com.gjkf.lib.lightning.LightMatrix;
 import com.gjkf.lib.util.Copyable;
 import com.gjkf.lib.vec.Rotation;
+import com.gjkf.lib.vec.Transformation;
 import com.gjkf.lib.vec.Vector3;
 
 import net.minecraft.client.Minecraft;
@@ -225,7 +226,7 @@ public class GJRenderState{
             if(sideRef != null)
                 side = sideRef[vertexIndex];
             else
-                side = CCModel.findSide(normal);
+                side = GJModel.findSide(normal);
         }
     };
     /**
@@ -267,7 +268,7 @@ public class GJRenderState{
     public static int firstVertexIndex;
     public static int lastVertexIndex;
     public static int vertexIndex;
-    public static CCRenderPipeline pipeline = new CCRenderPipeline();
+    public static GJRenderPipeline pipeline = new GJRenderPipeline();
 
     //context
     public static int baseColour;

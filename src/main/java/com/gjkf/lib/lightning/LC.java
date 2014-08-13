@@ -1,5 +1,6 @@
 package com.gjkf.lib.lightning;
 
+import com.gjkf.lib.render.GJModel;
 import com.gjkf.lib.util.Copyable;
 import com.gjkf.lib.vec.Rotation;
 import com.gjkf.lib.vec.Vector3;

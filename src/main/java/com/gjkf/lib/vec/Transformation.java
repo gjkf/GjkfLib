@@ -8,7 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 /**
  * Abstract supertype for any 3D vector transformation
  */
-public class Transformation extends ITransformation<Vector3, Transformation> implements GJRenderState.IVertexOperation{
+public abstract class Transformation extends ITransformation<Vector3, Transformation> implements GJRenderState.IVertexOperation{
     public static final int operationIndex = GJRenderState.registerOperation();
 
     /**
