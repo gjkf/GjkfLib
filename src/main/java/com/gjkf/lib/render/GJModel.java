@@ -14,6 +14,7 @@ import com.gjkf.lib.render.uv.UV;
 import com.gjkf.lib.render.uv.UVTransformation;
 import com.gjkf.lib.render.uv.UVTranslation;
 import com.gjkf.lib.util.Copyable;
+import com.gjkf.lib.vec.Cuboid6;
 import com.gjkf.lib.vec.RedundantTransformation;
 import com.gjkf.lib.vec.Transformation;
 import com.gjkf.lib.vec.TransformationList;
