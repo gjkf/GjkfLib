@@ -2,14 +2,18 @@ package com.gjkf.lib.helper;
 
 import org.apache.logging.log4j.Level;
 
-import com.gjkf.lib.References;
-
 import cpw.mods.fml.common.FMLLog;
 
-public class LogHelper {
+public class LogHelper{
 
+	private static String n;
+	
+	public LogHelper(String name){
+		this.n = name;
+	}
+	
 	public static void log(Level logLevel, Object object){
-		FMLLog.log(References.MOD_NAME, logLevel, String.valueOf(object));
+		FMLLog.log(n, logLevel, String.valueOf(object));
 	}
 
 	public static void all(Object object){
