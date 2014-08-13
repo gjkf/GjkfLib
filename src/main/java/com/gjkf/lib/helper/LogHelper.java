@@ -8,8 +8,8 @@ public class LogHelper{
 
 	private static String n;
 	
-	public LogHelper(String name){
-		this.n = name;
+	public LogHelper(String modId){
+		this.n = modId;
 	}
 	
 	public static void log(Level logLevel, Object object){
