@@ -1,4 +1,5 @@
 package com.gjkf.lib;
+
 import com.gjkf.lib.helper.LogHelper;
 import com.gjkf.lib.proxy.CommonProxy;
 
@@ -12,8 +13,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = References.MODID, name = References.MOD_NAME,version = References.VERSION)
 public class Main {
-
-	LogHelper log = new LogHelper(References.MODID);
 	
 	@Instance
 	public static Main instance;
@@ -23,7 +22,7 @@ public class Main {
 	
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event){
-		log.info("PreInitialization Complete!!!");
+		
 	}
 
 	@EventHandler
