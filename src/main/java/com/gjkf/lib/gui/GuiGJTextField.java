@@ -22,8 +22,6 @@ public class GuiGJTextField extends GuiWidget{
         isFocused = false;
         isEnabled = true;
         this.text = text;
-
-        allowedcharacters = ChatAllowedCharacters.allowedCharacters;
     }
 
     public GuiGJTextField setActionCommand(String s){
@@ -40,8 +38,7 @@ public class GuiGJTextField extends GuiWidget{
         onTextChanged(oldText);
     }
 
-    public void onTextChanged(String oldText)
-    {
+    public void onTextChanged(String oldText){
     }
 
     public final String getText(){
@@ -86,8 +83,8 @@ public class GuiGJTextField extends GuiWidget{
                     return;
 
                 char tc = s.charAt(i);
-                if(canAddChar(tc))
-                    setText(text + tc);
+                /*if(canAddChar(tc))
+                    setText(text + tc);*/
             }
         }
         if(keycode == Keyboard.KEY_RETURN){
@@ -98,13 +95,13 @@ public class GuiGJTextField extends GuiWidget{
         if(keycode == Keyboard.KEY_BACK && text.length() > 0)
             setText(text.substring(0, text.length() - 1));
 
-        if((text.length() < maxStringLength || maxStringLength == 0) && canAddChar(c))
+        if((text.length() < maxStringLength || maxStringLength == 0)/* && canAddChar(c)*/)
             setText(text + c);
     }
 
-    public boolean canAddChar(char c){
+    /*public boolean canAddChar(char c){
         return allowedcharacters[c] >= 0;
-    }
+    }*/
 
     @Override
     public void mouseClicked(int x, int y, int button){
@@ -136,8 +133,8 @@ public class GuiGJTextField extends GuiWidget{
     }
 
     public void drawBackground(){
-        drawRect(x - 1, y - 1, x + width + 1, y + height + 1, 0xffa0a0a0);
-        drawRect(x, y, x + width, y + height, 0xff000000);
+    	drawRect(this.x - 1, this.y - 1, this.x + this.width + 1, this.y + this.height + 1, -6250336);
+        drawRect(this.x, this.y, this.x + this.width, this.y + this.height, -16777216);
     }
     
     public String getDrawText(){
@@ -159,7 +156,7 @@ public class GuiGJTextField extends GuiWidget{
         maxStringLength = i;
         return this;
     }
-
+    
     public GuiGJTextField setAllowedCharacters(char[] s){
         if(s == null)
             s = ChatAllowedCharacters.allowedCharacters;

@@ -2,8 +2,7 @@ package com.gjkf.lib.config;
 
 import java.io.*;
 
-public class ConfigFile extends ConfigTagParent
-{
+public class ConfigFile extends ConfigTagParent{
     public static final byte[] crlf = new byte[]{0xD, 0xA};
 
     public File file;
@@ -13,9 +12,7 @@ public class ConfigFile extends ConfigTagParent
         newlinemode = 2;
         load(file);
     }
-
-    protected ConfigFile() {}
-
+    
     protected void load(File file) {
         try {
             if(!file.getParentFile().exists())
