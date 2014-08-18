@@ -8,6 +8,7 @@ import java.util.List;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatAllowedCharacters;
@@ -82,7 +83,7 @@ public class CommonUtils{
     }
 
     public static ItemStack consumeItem(ItemStack stack){
-        if(stack.getItem().hasContainerItem())
+        if(stack.getItem().hasContainerItem(stack))
             return stack.getItem().getContainerItem(stack);
         
         if(stack.stackSize == 1)
