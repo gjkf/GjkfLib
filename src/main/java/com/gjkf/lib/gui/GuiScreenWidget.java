@@ -10,9 +10,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 
 public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{    
-    public ArrayList<GuiWidget> widgets = new ArrayList<GuiWidget>();
-    public int xSize, ySize, guiTop, guiLeft;
     
+	public ArrayList<GuiWidget> widgets = new ArrayList<GuiWidget>();
+    
+	public int xSize, ySize;
+	public static int xCenter, yCenter;
+	
     public GuiScreenWidget(){
         this(176, 166);
     }
@@ -21,12 +24,16 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
         super();
         this.xSize = xSize;
         this.ySize = ySize;
+        this.xCenter = (width - this.xSize) / 2;
+        this.yCenter = (height - this.ySize) / 2;
     }
     
-    @Override
-    public void initGui(){
-        guiTop = (height - ySize) / 2;
-        guiLeft = (width - xSize) / 2;
+    public static int getXCenter(){
+    	return xCenter;
+    }
+    
+    public static int getYCenter(){
+    	return yCenter;
     }
     
     public void reset(){
@@ -50,12 +57,12 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
     
     @Override
     public void drawScreen(int mousex, int mousey, float f){
-        GL11.glTranslated(guiLeft, guiTop, 0);
+        GL11.glTranslated(getXCenter(), getYCenter(), 0);
         drawBackground();
         for(GuiWidget widget : widgets)
-            widget.draw(mousex-guiLeft, mousey-guiTop, f);
+            widget.draw(mousex-getXCenter(), mousey-getYCenter(), f);
         drawForeground();
-        GL11.glTranslated(-guiLeft, -guiTop, 0);
+        GL11.glTranslated(-getXCenter(), -getYCenter(), 0);
     }
     
     public void drawBackground(){
@@ -68,21 +75,21 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
     protected void mouseClicked(int x, int y, int button){
         super.mouseClicked(x, y, button);
         for(GuiWidget widget : widgets)
-            widget.mouseClicked(x-guiLeft, y-guiTop, button);
+            widget.mouseClicked(x-getXCenter(), y-getYCenter(), button);
     }
     
     @Override
     protected void mouseMovedOrUp(int x, int y, int button){
         super.mouseMovedOrUp(x, y, button);
         for(GuiWidget widget : widgets)
-            widget.mouseMovedOrUp(x-guiLeft, y-guiTop, button);
+            widget.mouseMovedOrUp(x-getXCenter(), y-getYCenter(), button);
     }
     
     @Override
     protected void mouseClickMove(int x, int y, int button, long time){
         super.mouseClickMove(x, y, button, time);
         for(GuiWidget widget : widgets)
-            widget.mouseDragged(x-guiLeft, y-guiTop, button, time);
+            widget.mouseDragged(x-getXCenter(), y-getYCenter(), button, time);
     }
     
     @Override
