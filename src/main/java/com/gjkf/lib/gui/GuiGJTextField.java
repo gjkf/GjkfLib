@@ -83,8 +83,8 @@ public class GuiGJTextField extends GuiWidget{
                     return;
 
                 char tc = s.charAt(i);
-                /*if(canAddChar(tc))
-                    setText(text + tc);*/
+                if(canAddChar(tc))
+                    setText(text + tc);
             }
         }
         if(keycode == Keyboard.KEY_RETURN){
@@ -95,13 +95,21 @@ public class GuiGJTextField extends GuiWidget{
         if(keycode == Keyboard.KEY_BACK && text.length() > 0)
             setText(text.substring(0, text.length() - 1));
 
-        if((text.length() < maxStringLength || maxStringLength == 0)/* && canAddChar(c)*/)
+        if((text.length() < maxStringLength || maxStringLength == 0) && canAddChar(c))
             setText(text + c);
     }
 
-    /*public boolean canAddChar(char c){
-        return allowedcharacters[c] >= 0;
-    }*/
+    public boolean canAddChar(char c){
+        for(int i = 0; i<allowedcharacters.length; i++){
+        	if(allowedcharacters[i] == c){
+        		return true;
+        	}else{
+        		continue;
+        	}
+        }
+        
+        return false;
+    }
 
     @Override
     public void mouseClicked(int x, int y, int button){

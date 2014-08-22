@@ -15,8 +15,8 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 
 	public int xSize;
 	public int ySize;
-	public static int xCenter;
-	public static int yCenter;
+	public static int minX;
+	public static int minY;
 
 	public GuiScreenWidget(){
 		this(176, 166);
@@ -26,16 +26,16 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 		super();
 		this.xSize = xSize;
 		this.ySize = ySize;
-		this.xCenter = (width - this.xSize) / 2;
-		this.yCenter = (height - this.ySize) / 2;
+		this.minX = (width - this.xSize) / 2;
+		this.minY = (height - this.ySize) / 2;
 	}
 
-	public static int getXCenter(){
-		return xCenter;
+	public static int getMinX(){
+		return minX;
 	}
 
-	public static int getYCenter(){
-		return yCenter;
+	public static int getMinY(){
+		return minY;
 	}
 
 	public void reset(){
@@ -59,12 +59,12 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 
 	@Override
 	public void drawScreen(int mousex, int mousey, float f){
-		GL11.glTranslated(getXCenter(), getYCenter(), 0);
+		GL11.glTranslated(getMinX(), getMinY(), 0);
 		drawBackground();
 		for(GuiWidget widget : widgets)
-			widget.draw(mousex-getXCenter(), mousey-getYCenter(), f);
+			widget.draw(mousex-getMinX(), mousey-getMinY(), f);
 		drawForeground();
-		GL11.glTranslated(-getXCenter(), -getYCenter(), 0);
+		GL11.glTranslated(-getMinX(), -getMinY(), 0);
 	}
 
 	public void drawBackground(){
@@ -77,21 +77,21 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 	protected void mouseClicked(int x, int y, int button){
 		super.mouseClicked(x, y, button);
 		for(GuiWidget widget : widgets)
-			widget.mouseClicked(x-getXCenter(), y-getYCenter(), button);
+			widget.mouseClicked(x-getMinX(), y-getMinY(), button);
 	}
 
 	@Override
 	protected void mouseMovedOrUp(int x, int y, int button){
 		super.mouseMovedOrUp(x, y, button);
 		for(GuiWidget widget : widgets)
-			widget.mouseMovedOrUp(x-getXCenter(), y-getYCenter(), button);
+			widget.mouseMovedOrUp(x-getMinX(), y-getMinY(), button);
 	}
 
 	@Override
 	protected void mouseClickMove(int x, int y, int button, long time){
 		super.mouseClickMove(x, y, button, time);
 		for(GuiWidget widget : widgets)
-			widget.mouseDragged(x-getXCenter(), y-getYCenter(), button, time);
+			widget.mouseDragged(x-getMinX(), y-getMinY(), button, time);
 	}
 
 	@Override
