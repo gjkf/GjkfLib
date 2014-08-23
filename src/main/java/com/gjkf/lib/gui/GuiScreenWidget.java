@@ -13,12 +13,7 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 
 	public ArrayList<GuiWidget> widgets = new ArrayList<GuiWidget>();
 
-	public int xSize;
-	public int ySize;
-	public static int minX;
-	public static int minY;
-	public int midX;
-	public int midY;
+	public int xSize, ySize, midX, midY, guiTop, guiLeft;
 
 	public GuiScreenWidget(){
 		this(176, 166);
@@ -26,37 +21,22 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 
 	public GuiScreenWidget(int xSize, int ySize){
 		super();
+		guiTop = (height - ySize) / 2;
+        guiLeft = (width - xSize) / 2;
 		this.xSize = xSize;
 		this.ySize = ySize;
-		this.minX = (width - this.xSize) / 2;
-		this.minY = (height - this.ySize) / 2;
-		this.midX = width/2;
-		this.midY = height/2;
-	}
-
-	/*
-	 * Returns half of the width
-	 */
-	
-	public int getMidX(){
-		return midX;
+		midX = getMid(width);
+		midY = getMid(height);
 	}
 	
 	/*
-	 * Returns half of the height
+	 * Returns half the dimension
 	 */
 	
-	public int getMidY(){
-		return midY;
+	public int getMid(int dimension){
+		return dimension/2;
 	}
 	
-	public static int getMinX(){
-		return minX;
-	}
-
-	public static int getMinY(){
-		return minY;
-	}
 
 	public void reset(){
 		initGui();
@@ -79,12 +59,12 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 
 	@Override
 	public void drawScreen(int mousex, int mousey, float f){
-		GL11.glTranslated(getMinX(), getMinY(), 0);
+		GL11.glTranslated(guiTop, guiLeft, 0);
 		drawBackground();
 		for(GuiWidget widget : widgets)
-			widget.draw(mousex-getMinX(), mousey-getMinY(), f);
+			widget.draw(mousex-guiTop, mousey-guiLeft, f);
 		drawForeground();
-		GL11.glTranslated(-getMinX(), -getMinY(), 0);
+		GL11.glTranslated(-guiTop, -guiLeft, 0);
 	}
 
 	public void drawBackground(){
@@ -97,21 +77,21 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 	protected void mouseClicked(int x, int y, int button){
 		super.mouseClicked(x, y, button);
 		for(GuiWidget widget : widgets)
-			widget.mouseClicked(x-getMinX(), y-getMinY(), button);
+			widget.mouseClicked(x-guiTop, y-guiLeft, button);
 	}
 
 	@Override
 	protected void mouseMovedOrUp(int x, int y, int button){
 		super.mouseMovedOrUp(x, y, button);
 		for(GuiWidget widget : widgets)
-			widget.mouseMovedOrUp(x-getMinX(), y-getMinY(), button);
+			widget.mouseMovedOrUp(x-guiTop, y-guiLeft, button);
 	}
 
 	@Override
 	protected void mouseClickMove(int x, int y, int button, long time){
 		super.mouseClickMove(x, y, button, time);
 		for(GuiWidget widget : widgets)
-			widget.mouseDragged(x-getMinX(), y-getMinY(), button, time);
+			widget.mouseDragged(x-guiTop, y-guiLeft, button, time);
 	}
 
 	@Override
