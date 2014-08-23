@@ -17,6 +17,8 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 	public int ySize;
 	public static int minX;
 	public static int minY;
+	public int midX;
+	public int midY;
 
 	public GuiScreenWidget(){
 		this(176, 166);
@@ -28,8 +30,26 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 		this.ySize = ySize;
 		this.minX = (width - this.xSize) / 2;
 		this.minY = (height - this.ySize) / 2;
+		this.midX = width/2;
+		this.midY = height/2;
 	}
 
+	/*
+	 * Returns half of the width
+	 */
+	
+	public int getMidX(){
+		return midX;
+	}
+	
+	/*
+	 * Returns half of the height
+	 */
+	
+	public int getMidY(){
+		return midY;
+	}
+	
 	public static int getMinX(){
 		return minX;
 	}
