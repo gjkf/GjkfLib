@@ -21,10 +21,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GuiDraw
-{
-	public static class GuiHook extends Gui
-    {
+public class GuiDraw{
+	public static class GuiHook extends Gui{
         public void setZLevel(float f) {
             zLevel = f;
         }
