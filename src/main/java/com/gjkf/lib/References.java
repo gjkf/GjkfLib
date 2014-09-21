@@ -10,4 +10,5 @@ public class References {
 	public static final String COMMON_PROXY = "com.gjkf.lib.proxy.CommonProxy";
 	public static final String SERVER_PROXY = "com.gjkf.lib.proxy.ServerProxy";
 	
+	public static final String RESOURCE_PREFIX = MODID.toLowerCase() + ':';
 }
