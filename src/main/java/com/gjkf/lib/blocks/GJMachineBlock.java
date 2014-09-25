@@ -23,12 +23,12 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public abstract class GJMachineBlcock extends GJDirectionalBlock{
+public abstract class GJMachineBlock extends GJDirectionalBlock{
     public static final Material MATERIAL = Material.piston;
     public static final SoundType SOUND = Block.soundTypePiston;
     public static final float HARDNESS = 0.5f;
 
-    protected GJMachineBlcock(){
+    protected GJMachineBlock(){
         super(MATERIAL);
         setStepSound(SOUND);
         setHardness(HARDNESS);
