@@ -99,6 +99,10 @@ public class GuiDraw{
         return fontRenderer.getStringWidth(EnumChatFormatting.getTextWithoutFormattingCodes(s));
     }
 
+    public static void drawCentered(String s, int x, int y, int colour) {
+        fontRenderer.drawString(s, x - getStringWidth(s) / 2, y, colour);
+    }
+    
     public static Dimension displaySize() {
         Minecraft mc = Minecraft.getMinecraft();
         ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
