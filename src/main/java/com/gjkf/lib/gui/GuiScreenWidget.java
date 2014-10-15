@@ -21,12 +21,8 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 
 	public GuiScreenWidget(int xSize, int ySize){
 		super();
-		guiTop = (height - ySize) / 2;
-        guiLeft = (width - xSize) / 2;
 		this.xSize = xSize;
-		this.ySize = ySize;
-		midX = getMid(width);
-		midY = getMid(height);
+        this.ySize = ySize;
 	}
 	
 	/*
@@ -38,19 +34,31 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 	}
 	
 
-	public void reset(){
-		initGui();
-		widgets.clear();
-		addWidgets();
-	}
-
 	@Override
-	public void setWorldAndResolution(Minecraft mc, int i, int j){
-		boolean init = this.mc == null;
-		super.setWorldAndResolution(mc, i, j);
-		if(init)
-			addWidgets();
-	}
+    public void initGui(){
+        guiTop = (height - ySize) / 2;
+        guiLeft = (width - xSize) / 2;
+        if(!widgets.isEmpty())
+            resize();
+    }
+
+    public void reset(){
+        widgets.clear();
+        initGui();
+        addWidgets();
+        resize();
+    }
+
+    @Override
+    public void setWorldAndResolution(Minecraft mc, int i, int j){
+        boolean init = this.mc == null;
+        super.setWorldAndResolution(mc, i, j);
+        if(init){
+            addWidgets();
+            resize();
+        }
+    }
+	
 
 	public void add(GuiWidget widget){
 		widgets.add(widget);
@@ -125,6 +133,9 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
 	public void actionPerformed(String ident, Object... params){
 	}
 
+	public void resize(){
+    }
+	
 	public void addWidgets(){
 	}
 }
