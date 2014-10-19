@@ -58,7 +58,6 @@ public class GuiScreenWidget extends GuiScreen implements IGuiActionListener{
             resize();
         }
     }
-	
 
 	public void add(GuiWidget widget){
 		widgets.add(widget);

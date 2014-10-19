@@ -17,12 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "0.2.5.20"
+version = "0.2.5.24"
 group= "com.gjkf.lib" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "gjkfLib"
 
 minecraft {
-    version = "1.7.10-10.13.0.1207"
+    version = "1.7.10-10.13.1.1226"
     assetDir = "eclipse/assets"
 }
 
