@@ -63,13 +63,16 @@ public class GuiContainerScreen extends GuiScreenWidget{
 	private ItemStack field_146994_N;
 
 	public GuiContainerScreen(Container container, int xSize, int ySize){
-
+		this.inventorySlots = container;
+		this.field_146995_H = true;
 	}
 
 	public GuiContainerScreen(Container container){
 		this(container, 176, 166);
+		this.inventorySlots = container;
+		this.field_146995_H = true;
 	}
-	
+
 	@Override
 	public void initGui(){
 		super.initGui();
@@ -101,7 +104,7 @@ public class GuiContainerScreen extends GuiScreenWidget{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		int k1;
 
-		for (int i1 = 0; i1 < this.inventorySlots.inventorySlots.size(); ++i1){
+		for(int i1 = 0; i1 < this.inventorySlots.inventorySlots.size(); ++i1){
 			Slot slot = (Slot)this.inventorySlots.inventorySlots.get(i1);
 			this.func_146977_a(slot);
 
@@ -175,7 +178,7 @@ public class GuiContainerScreen extends GuiScreenWidget{
 			widget.draw(mousex-guiTop, mousey-guiLeft, f);
 		drawForeground();
 		GL11.glTranslated(-guiTop, -guiLeft, 0);
-		
+
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		RenderHelper.enableStandardItemLighting();
@@ -398,7 +401,7 @@ public class GuiContainerScreen extends GuiScreenWidget{
 		super.mouseClickMove(x, y, button, time);
 		for(GuiWidget widget : widgets)
 			widget.mouseDragged(x-guiTop, y-guiLeft, button, time);
-		
+
 		if (this.clickedSlot != null && this.mc.gameSettings.touchscreen){
 			if (button == 0 || button == 1){
 				if (this.draggedStack == null){
@@ -583,7 +586,7 @@ public class GuiContainerScreen extends GuiScreenWidget{
 	 */
 	public void keyTyped(char c, int keycode){
 		super.keyTyped(c, keycode);
-		
+
 		if (keycode == 1 || keycode == this.mc.gameSettings.keyBindInventory.getKeyCode()){
 			this.mc.thePlayer.closeScreen();
 		}
@@ -642,28 +645,28 @@ public class GuiContainerScreen extends GuiScreenWidget{
 		if (!this.mc.thePlayer.isEntityAlive() || this.mc.thePlayer.isDead){
 			this.mc.thePlayer.closeScreen();
 		}
-		
+
 		if(mc.currentScreen == this)
 			for(GuiWidget widget : widgets)
 				widget.update();
 	}
-	
-	public void reset(){
-        widgets.clear();
-        initGui();
-        addWidgets();
-        resize();
-    }
 
-    @Override
-    public void setWorldAndResolution(Minecraft mc, int i, int j){
-        boolean init = this.mc == null;
-        super.setWorldAndResolution(mc, i, j);
-        if(init){
-            addWidgets();
-            resize();
-        }
-    }
+	public void reset(){
+		widgets.clear();
+		initGui();
+		addWidgets();
+		resize();
+	}
+
+	@Override
+	public void setWorldAndResolution(Minecraft mc, int i, int j){
+		boolean init = this.mc == null;
+		super.setWorldAndResolution(mc, i, j);
+		if(init){
+			addWidgets();
+			resize();
+		}
+	}
 
 	public void add(GuiWidget widget){
 		widgets.add(widget);
@@ -675,11 +678,11 @@ public class GuiContainerScreen extends GuiScreenWidget{
 	}
 
 	public void resize(){
-    }
-	
+	}
+
 	public void addWidgets(){
 	}
-	
+
 	@Override
 	public void handleMouseInput(){
 		super.handleMouseInput();
@@ -691,5 +694,5 @@ public class GuiContainerScreen extends GuiScreenWidget{
 				widget.mouseScrolled(p.x, p.y, scroll);
 		}
 	}
-	
+
 }

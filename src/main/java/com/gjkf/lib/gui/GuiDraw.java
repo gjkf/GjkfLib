@@ -1,10 +1,17 @@
 package com.gjkf.lib.gui;
 
+import java.awt.Dimension;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
@@ -15,11 +22,6 @@ import org.lwjgl.opengl.GL12;
 
 import com.gjkf.lib.helper.MathHelper;
 import com.gjkf.lib.render.GJRenderState;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class GuiDraw{
 	public static class GuiHook extends Gui{
@@ -227,5 +229,33 @@ public class GuiDraw{
 
         drawGradientRect(x + 1, y + 1, w - 1, 1, grad1, grad1);
         drawGradientRect(x + 1, y + h - 1, w - 1, 1, grad2, grad2);
+    }
+    
+    /*
+     * Draws a texture of size bigger than 256x256
+     */
+    public static void drawNonStandartTexturedRect(int x, int y, int u, int v, int width, int height, int textureWidth, int textureHeight){
+        float f = 1F / (float) textureWidth;
+        float f1 = 1F / (float) textureHeight;
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.addVertexWithUV((double) (x), (double) (y + height), 0, (double) ((float) (u) * f), (double) ((float) (v + height) * f1));
+        tessellator.addVertexWithUV((double) (x + width), (double) (y + height), 0, (double) ((float) (u + width) * f), (double) ((float) (v + height) * f1));
+        tessellator.addVertexWithUV((double) (x + width), (double) (y), 0, (double) ((float) (u + width) * f), (double) ((float) (v) * f1));
+        tessellator.addVertexWithUV((double) (x), (double) (y), 0, (double) ((float) (u) * f), (double) ((float) (v) * f1));
+        tessellator.draw();
+    }
+    
+    /*
+     * Draws a texture for the whole screen, even <b>bigger than 256x256</b>
+     */
+    public static void drawDrawFullscreenImage(int width, int height) {
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.addVertexWithUV(0.0D, (double)height, -90.0D, 0.0D, 1.0D);
+        tessellator.addVertexWithUV((double)width, (double)height, -90.0D, 1.0D, 1.0D);
+        tessellator.addVertexWithUV((double)width, 0.0D, -90.0D, 1.0D, 0.0D);
+        tessellator.addVertexWithUV(0.0D, 0.0D, -90.0D, 0.0D, 0.0D);
+        tessellator.draw();
     }
 }
