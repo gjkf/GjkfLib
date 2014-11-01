@@ -234,6 +234,7 @@ public class GuiDraw{
     /*
      * Draws a texture of size bigger than 256x256
      */
+    
     public static void drawNonStandartTexturedRect(int x, int y, int u, int v, int width, int height, int textureWidth, int textureHeight){
         float f = 1F / (float) textureWidth;
         float f1 = 1F / (float) textureHeight;
@@ -249,7 +250,8 @@ public class GuiDraw{
     /*
      * Draws a texture for the whole screen, even <b>bigger than 256x256</b>
      */
-    public static void drawDrawFullscreenImage(int width, int height) {
+    
+    public static void drawFullscreenImage(int width, int height) {
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
         tessellator.addVertexWithUV(0.0D, (double)height, -90.0D, 0.0D, 1.0D);

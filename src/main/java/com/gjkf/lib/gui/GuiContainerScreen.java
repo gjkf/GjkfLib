@@ -26,7 +26,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiContainerScreen extends GuiScreenWidget{
+public class GuiContainerScreen extends GuiScreenWidget implements IGuiActionListener{
 
 	public ArrayList<GuiWidget> widgets = new ArrayList<GuiWidget>();
 
@@ -200,7 +200,7 @@ public class GuiContainerScreen extends GuiScreenWidget{
 	/**
 	 * Draw the foreground layer for the GuiContainer (everything in front of the items)
 	 */
-	protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {}
+	protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_){}
 
 	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_){}
 
@@ -674,14 +674,11 @@ public class GuiContainerScreen extends GuiScreenWidget{
 	}
 
 	@Override
-	public void actionPerformed(String ident, Object... params){
-	}
+	public void actionPerformed(String ident, Object... params){}
 
-	public void resize(){
-	}
+	public void resize(){}
 
-	public void addWidgets(){
-	}
+	public void addWidgets(){}
 
 	@Override
 	public void handleMouseInput(){
